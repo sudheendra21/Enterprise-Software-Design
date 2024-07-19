@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        li {
+            display: flex;
+            align-items: center;
+            margin: 10px; /* Adjust the margin as needed */
+            flex: 0 0 calc(33.33% - 20px); /* 3 items per row, adjust as needed */
+        }
+
+        .course-container {
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+
+        .add-button {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body style="background-color:bisque;">
+
+<form th:action="@{/deletefromdatabase}" method="post">
+    <h1 th:inline="text">Hello <span th:remove="tag" sec:authentication="name">thymeleaf</span>!</h1>
+
+    <p>Select the course you want to delete from the database</p>
+    <ul>
+        <li th:each="entry : ${courseInfoMap}">
+            <div class="course-container">
+                <input type="radio" th:id="${'courseRadio_' + #strings.replace(entry.key, ' ', '_')}" th:name="selectedCourse" th:value="${entry.key}">
+                <!-- Updated name attribute for consistency -->
+                <input type="hidden" th:id="${'courseVideo_' + #strings.replace(entry.key, ' ', '_')}" th:name="videoUrl" th:value="${entry.value}">
+                <video width="320" height="240" controls>
+                    <source th:src="${entry.value}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <span th:text="${entry.key}"></span>
+            </div>
+        </li>
+    </ul>
+
+    <button type="submit" class="add-button">Delete the selected course</button>
+</form>
+
+</body>
+</html>

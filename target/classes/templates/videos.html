@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Course List</title>
+    <style>
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            display: inline-block;
+            margin: 10px; /* Adjust the margin as needed */
+        }
+    </style>
+</head>
+<body style="background-color:bisque;">
+
+<h1>Video List Updated</h1>
+
+<ul>
+    <li th:each="videoUrl : ${videoUrls}">
+        <video width="320" height="240" controls autoplay>
+            <source th:src="${videoUrl}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </li>
+</ul>
+
+</body>
+</html>

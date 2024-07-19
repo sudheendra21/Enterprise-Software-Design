@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+  <title>Hello World!</title>
+  <style>
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      display: inline-block;
+      margin: 10px; /* Adjust the margin as needed */
+    }
+
+    .course-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .video-container {
+      margin-right: 10px; /* Adjust the margin between video and checkbox */
+    }
+  </style>
+</head>
+<body style="background-color:bisque;">
+<h1 th:inline="text">Hello <span th:remove="tag" sec:authentication="name">thymeleaf</span>!</h1>
+
+<p>These are your registered courses</p>
+<ul>
+  <li th:each="courseInfo : ${courseInfoMap}">
+    <div class="course-container">
+      <div class="video-container">
+        <!-- Checkbox removed -->
+      </div>
+      <div>
+        <video width="320" height="240" controls>
+          <source th:src="${courseInfo.value}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <span th:text="${courseInfo.key}"></span>
+      </div>
+    </div>
+  </li>
+</ul>
+
+<p> <a th:href="@{/showcourses}">Register for more courses</a></p>
+
+<form th:action="@{/logout}" method="post">
+  <br>
+  <br>
+  <br>
+  <input type="submit" value="Sign Out"/>
+</form>
+</body>
+</html>

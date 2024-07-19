@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <title>Update Course</title>
+</head>
+<body style="background-color:bisque;">
+<h2>Update an Existing Course</h2>
+
+<form th:action="@{/updatecourse2}" method="post">
+
+  <label for="courseid">id:</label>
+  <input type="number" id="courseid" name="courseid" required/>
+
+  <br/> <br/>
+
+
+  <label for="courseName">Course Name:</label>
+  <input type="text" id="courseName" name="courseName" required/>
+
+  <br/> <br/>
+
+  <label for="price">Price:</label>
+  <input type="number" id="price" name="price" required/>
+
+  <br/> <br/>
+
+  <label for="duration">Duration:</label>
+  <input type="number" id="duration" name="duration" required/>
+
+  <br/> <br/>
+
+  <label for="description">Description:</label>
+  <textarea id="description" name="description" rows="4" required></textarea>
+
+  <br/> <br/>
+
+  <input type="submit" value="Update Course"/>
+</form>
+</body>
+</html>
